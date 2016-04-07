@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+
+#left{
+	background:#555;
+	width:20%;
+	height:100%;
+	float:left;
+}
+#right{
+	background:green;
+	width:80%;
+	height:100%;
+	float:right;
+	
+}
