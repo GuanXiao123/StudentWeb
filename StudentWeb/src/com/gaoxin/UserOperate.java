@@ -2,9 +2,10 @@ package com.gaoxin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 
 
@@ -25,7 +26,7 @@ public class UserOperate {
 //			String sqlStr = "insert into stu_table values(6,'stu.getId()','女','2032','经管')";		
 			String sqlStr = "insert into stu_table(stu_id,name,gender,class_no,dept) values('"		+stu.getId()+	"','"			+stu.getName()+		"','"		+stu.getGender()+"','"+stu.getClassNo()+"','"+stu.getDept()
 			+"')            "     ;
-			state.execute(sqlStr);
+			state.executeQuery(sqlStr);
 			
 		} catch (SQLException e) {
 			
@@ -68,9 +69,10 @@ public class UserOperate {
 	public void updateStu(Student stu,String id){			//修改操作
 		try {
 			Statement state = conn.createStatement();
-			String sqlStr = "update stu_table set stu_id = '" + stu.getId() + "'name ='" + stu.getName() +"'gender = '" + stu.getGender()
-					+"'class_no ='" + stu.getClassNo() + "'dept ='" + stu.getDept()+"'where stu_id =" + "'"+id +"'"; 
-			int number = state.executeUpdate(sqlStr);
+			
+			String sqlStr = "update stu_table set stu_id = '"	+stu.getId()+	"',name = '"+stu.getName() +"',gender = '"+stu.getGender() +"',class_no = '"+stu.getClassNo()+"',dept = '"+stu.getDept()+"' where stu_id ='"+id+"'";
+
+			int number = state.executeUpdate(sqlStr);	//返回的是受影响的行数，只是测试用
 			
 			System.out.println(number);
 		} catch (SQLException e) {
@@ -79,9 +81,44 @@ public class UserOperate {
 		}finally{
 			dbManage.closeConn();
 		}
-		
-		
+	}
+	
+	
+	//showStu操作   显示所有用户信息   待续
+
+	public Vector<Student> showStu(){
+		Vector<Student> students = null;
+		try {
+			Statement state = conn.createStatement();
+			String sqlStr = "select * from stu_table";
+			ResultSet rs = state.executeQuery(sqlStr);
+			int count;	//计算数据表中有多少行数据
+			
+			
+			while(rs.next()){
+				
+				Student student = null;
+				
+				student.setId(String.valueOf(rs.getInt("stu_id")));
+				student.setName(rs.getString("name"));
+				student.setGender(rs.getString("gender"));
+				student.setClassNo(String.valueOf(rs.getInt("class_no")));
+				student.setDept(rs.getString("dept"));
+				
+				students.add(student);
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return students;
+	
 		
 	}
+	
 
 }
