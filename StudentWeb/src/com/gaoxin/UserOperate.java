@@ -23,10 +23,9 @@ public class UserOperate {
 		try {
 			Statement state = conn.createStatement();
 			
-//			String sqlStr = "insert into stu_table values(6,'stu.getId()','女','2032','经管')";		
 			String sqlStr = "insert into stu_table(stu_id,name,gender,class_no,dept) values('"		+stu.getId()+	"','"			+stu.getName()+		"','"		+stu.getGender()+"','"+stu.getClassNo()+"','"+stu.getDept()
 			+"')            "     ;
-			state.executeQuery(sqlStr);
+			state.execute(sqlStr);
 			
 		} catch (SQLException e) {
 			
@@ -87,17 +86,17 @@ public class UserOperate {
 	//showStu操作   显示所有用户信息   待续
 
 	public Vector<Student> showStu(){
-		Vector<Student> students = null;
+		Vector<Student> students = new Vector<Student>();
 		try {
 			Statement state = conn.createStatement();
 			String sqlStr = "select * from stu_table";
 			ResultSet rs = state.executeQuery(sqlStr);
-			int count;	//计算数据表中有多少行数据
 			
 			
 			while(rs.next()){
 				
-				Student student = null;
+				Student student =  new Student() ;
+				
 				
 				student.setId(String.valueOf(rs.getInt("stu_id")));
 				student.setName(rs.getString("name"));

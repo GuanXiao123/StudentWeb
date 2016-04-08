@@ -38,5 +38,4 @@ public class Student {
 		this.dept = dept;
 	}
 	
-
 }

@@ -1,19 +1,20 @@
 package com.gaoxin;
 
+import java.util.Vector;
+
 public class DBTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Student stu = new Student();
-//		stu.setId(2);
-		stu.setName("¸ß");
-		stu.setGender("Å®");
-		stu.setDept("Èí¼þ");
-//		stu.setClassNo(2012);
+	
 		
 		
-		UserOperate uso = new UserOperate();
-		uso.addStu(stu);
+		UserOperate uo = new UserOperate();
+		Vector<Student> students =uo.showStu();
+		Student student = new Student();
+		for(int i=0;i<students.size();i++){
+			student = (Student)students.get(i);
+		}
+		System.out.println(student.getId());
 	}
-
 }

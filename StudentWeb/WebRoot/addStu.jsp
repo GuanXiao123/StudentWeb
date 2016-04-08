@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
    	
-   	<form action = "addStu.jsp" method = "post">
+   	<form action = "" method = "post">
    		<table>
    			<tr>
    				<th>学号</th><th>姓名</th><th>性别</th><th>班级号</th><th>院系</th>
@@ -65,6 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	UserOperate uo = new UserOperate();
 	uo.addStu(student);
+	
+	
 %>
 
 	   	

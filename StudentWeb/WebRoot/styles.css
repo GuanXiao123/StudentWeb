@@ -2,13 +2,17 @@
 
 
 #left{
-	background:#555;
+	background:#002322;
 	width:20%;
 	height:100%;
 	float:left;
 }
+
+#left .operate ul{
+	style = ;
+}
 #right{
-	background:green;
+	background:;
 	width:80%;
 	height:100%;
 	float:right;
